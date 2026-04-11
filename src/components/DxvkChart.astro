@@ -19,8 +19,8 @@ function parsePresentMonRow(raw: string) {
   };
 }
 
-import wdxvkRaw from "../../wdxvk.csv?raw";
-import wodxvkRaw from "../../wodxvk.csv?raw";
+import wdxvkRaw from "../data/wdxvk.csv?raw";
+import wodxvkRaw from "../data/wodxvk.csv?raw";
 
 const dxvk = parsePresentMonRow(wdxvkRaw);
 const native = parsePresentMonRow(wodxvkRaw);
