@@ -1,23 +1,58 @@
-export const SITE = {
-  website: "https://astro-paper.pages.dev/", // replace this with your deployed domain
-  author: "Sat Naing",
-  profile: "https://satnaing.dev/",
-  desc: "A minimal, responsive and SEO-friendly Astro blog theme.",
-  title: "AstroPaper",
+import type { Site, SocialObjects } from "./types";
+
+export const SITE: Site = {
+  website: "https://astro-paper.pages.dev/", // 나중에 도메인을 연결하면 해당 주소로 변경하세요
+  author: "Saususge",
+  profile: "https://github.com/Saususge",
+  desc: "게임 개발과 Low level Engineering을 좋아하는 Saususge의 기술 블로그입니다.",
+  title: "Saususge",
   ogImage: "astropaper-og.jpg",
   lightAndDarkMode: true,
   postPerIndex: 4,
   postPerPage: 4,
-  scheduledPostMargin: 15 * 60 * 1000, // 15 minutes
+  scheduledPostMargin: 15 * 60 * 1000,
   showArchives: true,
-  showBackButton: true, // show back button in post detail
+  showBackButton: true,
   editPost: {
     enabled: true,
     text: "Edit page",
-    url: "https://github.com/satnaing/astro-paper/edit/main/",
+    url: "https://github.com/Saususge/vercel-blog/edit/main/",
   },
   dynamicOgImage: true,
-  dir: "ltr", // "rtl" | "auto"
-  lang: "en", // html lang code. Set this empty and default will be "en"
-  timezone: "Asia/Bangkok", // Default global timezone (IANA format) https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  dir: "ltr",
+  lang: "ko",
+  timezone: "Asia/Seoul",
 } as const;
+
+export const LOCALE = {
+  lang: "ko", // 한국어 날짜 형식을 위해 수정
+  langTag: ["ko-KR"],
+} as const;
+
+export const LOGO_IMAGE = {
+  enable: false,
+  svg: true,
+  width: 216,
+  height: 46,
+};
+
+export const SOCIALS: SocialObjects = [
+  {
+    name: "Github",
+    href: "https://github.com/Saususge",
+    linkTitle: `Saususge on Github`,
+    active: true,
+  },
+  {
+    name: "LinkedIn",
+    href: "https://www.linkedin.com/in/cwk95",
+    linkTitle: `Saususge on LinkedIn`,
+    active: true,
+  },
+  {
+    name: "Mail",
+    href: "mailto:saususge@gmail.com",
+    linkTitle: `Send an email to Saususge`,
+    active: true,
+  },
+];
