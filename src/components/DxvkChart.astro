@@ -1,0 +1,127 @@
+---
+/** PresentMon CSV export: one header row + one data row. */
+function parsePresentMonRow(raw: string) {
+  const lines = raw.trim().split(/\r?\n/);
+  if (lines.length < 2) {
+    throw new Error("DxvkChart: expected header + data row in CSV");
+  }
+  const headers = lines[0].split(",");
+  const values = lines[1].split(",");
+  const get = (name: string) => {
+    const i = headers.indexOf(name);
+    if (i < 0) throw new Error(`DxvkChart: missing column "${name}"`);
+    return Number.parseFloat(values[i]);
+  };
+  return {
+    averageFps: get("Average FPS"),
+    p5Fps: get("5th Percentile FPS"),
+    p1Fps: get("1st Percentile FPS"),
+  };
+}
+
+import wdxvkRaw from "../../wdxvk.csv?raw";
+import wodxvkRaw from "../../wodxvk.csv?raw";
+
+const dxvk = parsePresentMonRow(wdxvkRaw);
+const native = parsePresentMonRow(wodxvkRaw);
+
+const benchmark = {
+  native: [native.averageFps, native.p5Fps, native.p1Fps],
+  dxvk: [dxvk.averageFps, dxvk.p5Fps, dxvk.p1Fps],
+};
+
+const benchmarkAttr = encodeURIComponent(JSON.stringify(benchmark));
+---
+
+<div
+  id="dxvk-bench-root"
+  class="chart-container my-6"
+  style="position: relative; height: min(420px, 45vh); width: 100%"
+  data-benchmark={benchmarkAttr}
+>
+  <canvas id="dxvk-benchmark-chart" aria-label="순정 DX9 대비 DXVK 적용 시 평균·하위 퍼센타일 FPS 비교"></canvas>
+</div>
+
+<script>
+  import Chart from "chart.js/auto";
+
+  type Bench = { native: number[]; dxvk: number[] };
+
+  function readBench(): Bench | null {
+    const el = document.getElementById("dxvk-bench-root");
+    const raw = el?.getAttribute("data-benchmark");
+    if (!raw) return null;
+    try {
+      return JSON.parse(decodeURIComponent(raw)) as Bench;
+    } catch {
+      return null;
+    }
+  }
+
+  function mountChart() {
+    const benchmark = readBench();
+    const canvas = document.getElementById(
+      "dxvk-benchmark-chart",
+    ) as HTMLCanvasElement | null;
+    if (!benchmark || !canvas) return;
+
+    const existing = Chart.getChart(canvas);
+    if (existing) existing.destroy();
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: ["평균 FPS", "하위 5% FPS", "하위 1% FPS"],
+        datasets: [
+          {
+            label: "순정 (Native DX9)",
+            data: benchmark.native,
+            backgroundColor: "rgba(54, 162, 235, 0.7)",
+            borderColor: "rgba(54, 162, 235, 1)",
+            borderWidth: 1,
+          },
+          {
+            label: "DXVK 적용",
+            data: benchmark.dxvk,
+            backgroundColor: "rgba(255, 99, 132, 0.7)",
+            borderColor: "rgba(255, 99, 132, 1)",
+            borderWidth: 1,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: { mode: "index", intersect: false },
+        plugins: {
+          legend: { position: "top" },
+          title: {
+            display: true,
+            text: "마비노기 순정 vs DXVK — 평균·하위 퍼센타일 FPS (PresentMon)",
+          },
+          tooltip: {
+            callbacks: {
+              label(ctx) {
+                const v = ctx.parsed.y;
+                if (v == null || Number.isNaN(v)) return `${ctx.dataset.label}`;
+                return `${ctx.dataset.label}: ${v.toFixed(2)} FPS`;
+              },
+            },
+          },
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            title: { display: true, text: "FPS" },
+          },
+        },
+      },
+    });
+  }
+
+  mountChart();
+  document.addEventListener("astro:page-load", mountChart);
+</script>

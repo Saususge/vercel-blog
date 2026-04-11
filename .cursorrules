@@ -1,0 +1,25 @@
+# Project Context
+- 이 프로젝트는 Astro 프레임워크를 기반으로 한 정적 블로그입니다.
+- 주요 기술 스택: Astro, TypeScript, Tailwind CSS, chart.js
+- 패키지 매니저: pnpm
+
+# Directory Structure
+- 블로그 포스트(mdx): 반드시 `src/data/blog/` 폴더에 작성합니다. 확장자는 *.mdx* 입니다.
+- UI 컴포넌트: `src/components/`에 `.astro` 형태로 작성합니다.
+- 페이지 라우팅: `src/pages/`에 위치합니다.
+- 유틸리티 함수: `src/utils/`에 작성합니다.
+
+# Coding Standards
+## TypeScript
+- 모든 변수와 함수에 명시적인 타입(Type/Interface)을 지정하고, `any` 타입 사용을 지양합니다.
+
+## Astro & CSS
+- 컴포넌트 로직은 파일 최상단 Frontmatter(`---`) 영역에 작성합니다.
+- 스타일링은 우선적으로 Tailwind CSS 유틸리티 클래스를 사용하며, 전역 스타일이 필요한 경우 `src/styles/` 내의 파일을 수정합니다.
+
+## Linter & Formatter
+- 코드 생성 및 수정 시 프로젝트의 `eslint.config.js`와 `.prettierrc.mjs` 규칙을 준수하여 포매팅합니다.
+
+# Workflow
+- 의존성 패키지를 추가하거나 설치할 때는 반드시 `pnpm`을 사용합니다. (`npm`이나 `yarn` 금지)
+- 커밋 메시지나 PR을 작성할 때는 프로젝트에 설정된 `cz.yaml` (Commitizen) 컨벤션을 따릅니다.
