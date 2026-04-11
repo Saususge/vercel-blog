@@ -61,10 +61,18 @@ const structuredData = {
     <link rel="canonical" href={canonicalURL} />
     <meta name="generator" content={Astro.generator} />
 
-    <!-- Load Font -->
+    <!-- UI + code: Google Sans Code -->
     <Font
       cssVariable="--font-google-sans-code"
       preload={[{ subset: "latin", weight: 400, style: "normal" }]}
+    />
+    <!-- Article body: Noto Sans KR (see `experimental.fonts` in astro.config) -->
+    <Font
+      cssVariable="--font-noto-sans-kr"
+      preload={[
+        { subset: "korean", weight: 400, style: "normal" },
+        { subset: "latin", weight: 400, style: "normal" },
+      ]}
     />
 
     <!-- General Meta Tags -->

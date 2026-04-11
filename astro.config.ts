@@ -68,6 +68,16 @@ export default defineConfig({
         weights: [300, 400, 500, 600, 700],
         styles: ["normal", "italic"],
       },
+      /* Long-form posts / About: change `name` or add weights in one place */
+      {
+        name: "Noto Sans KR",
+        cssVariable: "--font-noto-sans-kr",
+        provider: fontProviders.google(),
+        fallbacks: ["Apple SD Gothic Neo", "Malgun Gothic", "sans-serif"],
+        weights: [400, 500, 600, 700],
+        styles: ["normal"],
+        subsets: ["latin", "korean"],
+      },
     ],
   },
 });
