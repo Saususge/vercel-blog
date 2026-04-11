@@ -14,9 +14,11 @@ tags:
 categories:
   - Tech
   - Gaming
+  - Graphics
 description: >-
-  PresentMon으로 마비노기 던바튼 광장 구간을 측정해 플레이오네 엔진의 Native DX9와 DXVK 적용 시의 평균·Low Percentage FPS를 비교하고,
-  Single-thread bottleneck과 API translation overhead를 중심으로 결과 분석 (Optimizing the frame budget by reducing CPU overhead in the command stream).
+  PresentMon으로 마비노기 던바튼 광장 구간을 측정해 플레이오네 엔진의 Native DX9와 DXVK 적용 시의 평균·Low Percentage FPS를 비교.
+  Single-thread bottleneck과 API translation overhead를 중심으로 결과 분석.
+  Optimizing the frame budget by reducing CPU overhead in the command stream.
 ---
 
 import DxvkChart from "@/components/DxvkChart.astro";
@@ -27,7 +29,8 @@ import DxvkChart from "@/components/DxvkChart.astro";
 
 다만 제가 이해하기로 플레이오네 엔진의 핵심 병목은 GPU의 처리 성능이라기보다는 엔진 구조에서 비롯되는 CPU 측의 Single-thread bottleneck에 더 가깝다고 생각했습니다. 따라서 Graphics API 교체만으로 근본적인 성능 개선을 기대하기는 어려울 것이라 판단했습니다.
 
-단순히 체감적인 부분에 머무르지 않고 객관적인 현상을 파악하고자, 직접 모니터링 로그를 수집하여 두 환경의 실측 데이터를 비교 및 분석해 보았습니다.
+때문에, 단순히 체감적인 부분에 머무르지 않고 객관적인 현상을 파악하고자, 직접 모니터링 로그를 수집하여 두 환경의 실측 데이터를 비교 및 분석해 보았습니다.
+
 ---
 
 ## 1. 테스트 환경 및 방법론

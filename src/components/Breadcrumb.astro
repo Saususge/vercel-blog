@@ -6,6 +6,14 @@ const currentUrlPath = Astro.url.pathname.replace(/\/+$/, "");
 // eg: /tags/tailwindcss => ['tags', 'tailwindcss']
 const breadcrumbList = currentUrlPath.split("/").slice(1);
 
+/** Path segment → short label for known pages (URL path stays English). */
+const pathSegmentLabel = (segment: string): string => {
+  const decoded = decodeURIComponent(segment);
+  const key = decoded.toLowerCase();
+  if (key === "about") return "About";
+  return decoded;
+};
+
 // if breadcrumb is Home > Posts > 1 <etc>
 // replace Posts with Posts (page number)
 if (breadcrumbList[0] === "posts") {
@@ -40,13 +48,13 @@ if (breadcrumbList[0] === "tags" && !isNaN(Number(breadcrumbList[2]))) {
               aria-current="page"
             >
               {/* make the last part lowercase in Home > Tags > some-tag */}
-              {decodeURIComponent(breadcrumb)}
+              {pathSegmentLabel(breadcrumb)}
             </span>
           </li>
         ) : (
           <li>
             <a href={`/${breadcrumb}/`} class="capitalize opacity-70">
-              {breadcrumb}
+              {pathSegmentLabel(breadcrumb)}
             </a>
             <span aria-hidden="true">&raquo;</span>
           </li>

@@ -1,7 +1,7 @@
 import type { Site, SocialObjects } from "./types";
 
 export const SITE: Site = {
-  website: "https://astro-paper.pages.dev/", // 나중에 도메인을 연결하면 해당 주소로 변경하세요
+  website: "https://saususge.tech/",
   author: "Saususge",
   profile: "https://github.com/Saususge",
   desc: "게임 개발과 Low level Engineering을 좋아하는 Saususge의 기술 블로그입니다.",
@@ -40,19 +40,19 @@ export const SOCIALS: SocialObjects = [
   {
     name: "Github",
     href: "https://github.com/Saususge",
-    linkTitle: `Saususge on Github`,
+    linkTitle: `${SITE.title} on GitHub`,
     active: true,
   },
   {
     name: "LinkedIn",
     href: "https://www.linkedin.com/in/cwk95",
-    linkTitle: `Saususge on LinkedIn`,
+    linkTitle: `${SITE.title} on LinkedIn`,
     active: true,
   },
   {
     name: "Mail",
     href: "mailto:saususge@gmail.com",
-    linkTitle: `Send an email to Saususge`,
+    linkTitle: `Send an email to ${SITE.title}`,
     active: true,
   },
 ];

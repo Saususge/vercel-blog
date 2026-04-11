@@ -7,7 +7,7 @@ import IconWhatsapp from "@/assets/icons/IconWhatsapp.svg";
 import IconFacebook from "@/assets/icons/IconFacebook.svg";
 import IconTelegram from "@/assets/icons/IconTelegram.svg";
 import IconPinterest from "@/assets/icons/IconPinterest.svg";
-import { SITE } from "@/config";
+import { SOCIALS as SOCIALS_DATA } from "@/config";
 
 interface Social {
   name: string;
@@ -16,32 +16,31 @@ interface Social {
   icon: (_props: Props) => Element;
 }
 
-export const SOCIALS: Social[] = [
-  {
-    name: "GitHub",
-    href: "https://github.com/satnaing/astro-paper",
-    linkTitle: `${SITE.title} on GitHub`,
-    icon: IconGitHub,
-  },
-  {
-    name: "X",
-    href: "https://x.com/username",
-    linkTitle: `${SITE.title} on X`,
-    icon: IconBrandX,
-  },
-  {
-    name: "LinkedIn",
-    href: "https://www.linkedin.com/in/username/",
-    linkTitle: `${SITE.title} on LinkedIn`,
-    icon: IconLinkedin,
-  },
-  {
-    name: "Mail",
-    href: "mailto:yourmail@gmail.com",
-    linkTitle: `Send an email to ${SITE.title}`,
-    icon: IconMail,
-  },
-] as const;
+/** Normalized keys: github, linkedin, mail, x, … — add here when adding a row in `config.ts` → `SOCIALS`. */
+const SOCIAL_ICONS: Record<string, (_props: Props) => Element> = {
+  github: IconGitHub,
+  linkedin: IconLinkedin,
+  mail: IconMail,
+  x: IconBrandX,
+};
+
+function socialIconForName(name: string): (_props: Props) => Element {
+  const key = name.toLowerCase().replace(/[^a-z]/g, "");
+  const icon = SOCIAL_ICONS[key];
+  if (!icon) {
+    throw new Error(
+      `constants: no icon for social name "${name}". Add a \`SOCIALS\` row in config or map "${key}" in SOCIAL_ICONS.`,
+    );
+  }
+  return icon;
+}
+
+export const SOCIALS: Social[] = SOCIALS_DATA.filter(s => s.active).map(s => ({
+  name: s.name,
+  href: s.href,
+  linkTitle: s.linkTitle,
+  icon: socialIconForName(s.name),
+}));
 
 export const SHARE_LINKS: Social[] = [
   {

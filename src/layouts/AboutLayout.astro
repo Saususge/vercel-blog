@@ -3,21 +3,35 @@ import type { MarkdownLayoutProps } from "astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
+import Socials from "@/components/Socials.astro";
 import Layout from "./Layout.astro";
 import { SITE } from "@/config";
 
-type Props = MarkdownLayoutProps<{ title: string }>;
+type Props = MarkdownLayoutProps<{ title: string; description?: string }>;
 
 const { frontmatter } = Astro.props;
+const pageDescription =
+  frontmatter.description ??
+  "Saususge 소개 — 게임 클라이언트, 그래픽스·성능 측정, 기술 블로그.";
 ---
 
-<Layout title={`${frontmatter.title} | ${SITE.title}`}>
+<Layout
+  title={`${frontmatter.title} | ${SITE.title}`}
+  description={pageDescription}
+>
   <Header />
   <Breadcrumb />
   <main id="main-content" class="app-layout">
     <section id="about" class="app-prose mb-28 max-w-app prose-img:border-0">
       <h1 class="text-2xl tracking-wider sm:text-3xl">{frontmatter.title}</h1>
       <slot />
+      <div class="not-prose mt-10 border-t border-border pt-8">
+        <h2 class="mb-3 text-lg font-semibold tracking-wide">링크</h2>
+        <p class="mb-4 text-sm text-foreground/80">
+          GitHub, LinkedIn, 메일은 메인 페이지와 같은 연락처입니다.
+        </p>
+        <Socials />
+      </div>
     </section>
   </main>
   <Footer />
