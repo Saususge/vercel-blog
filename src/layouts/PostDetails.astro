@@ -88,7 +88,6 @@ const nextPost =
   <main
     id="main-content"
     class:list={["app-layout pb-12", { "mt-8": !SITE.showBackButton }]}
-    data-pagefind-body
   >
     <h1
       transition:name={slugifyStr(title.replaceAll(".", "-"))}
@@ -115,7 +114,6 @@ const nextPost =
     </article>
 
     <hr class="my-8 border-dashed" />
-
     <EditPost class="sm:hidden" {hideEditPost} {post} />
 
     <ul class="mt-4 mb-8 flex flex-wrap gap-4 sm:my-8">
