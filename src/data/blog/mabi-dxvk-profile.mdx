@@ -9,7 +9,7 @@ description: "WPA와 ETW 시스템 커널 로그를 활용하여, 마비노기 D
 ---
 
 > **요약 (Abstract)**
-> 이전 벤치마크 테스트에서 마비노기에 DXVK를 적용할 경우 평균 프레임(Avg FPS)은 크게 상승하나, 1% Low 프레임이 급격히 하락하며 마이크로 스터터링(Micro-stuttering)이 발생하는 현상을 관측했습니다. 본 포스팅에서는 Windows Performance Analyzer (WPA)를 활용하여, 이 현상의 근본 원인이 **DXVK 워커 스레드의 점유율 폭주로 인한 메인 렌더링 스레드 블로킹(Thread Blocking)**에 있음을 커널 수준에서 증명합니다.
+> 이전 벤치마크 테스트에서 마비노기에 DXVK를 적용할 경우 평균 프레임(Avg FPS)과 1% Low 프레임이 급격히 하락하며 마이크로 스터터링(Micro-stuttering)이 발생하는 현상을 관측했습니다. 본 포스팅에서는 Windows Performance Analyzer (WPA)를 활용하여, 이 현상의 근본 원인이 **DXVK 워커 스레드의 점유율 폭주로 인한 메인 렌더링 스레드 블로킹(Thread Blocking)**에 있음을 커널 수준에서 증명합니다.
 
 ---
 
