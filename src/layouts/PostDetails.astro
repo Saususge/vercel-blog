@@ -234,6 +234,7 @@ const nextPost =
     ).filter(
       pre =>
         !pre.classList.contains("mermaid") &&
+        pre.getAttribute("data-language") !== "mermaid" &&
         !pre.querySelector("code.language-mermaid")
     );
 
@@ -292,16 +293,21 @@ const nextPost =
   import mermaid from "mermaid";
 
   function normalizeMermaidBlocks() {
-    const codeBlocks = Array.from(
-      document.querySelectorAll("#article pre > code.language-mermaid")
+    const mermaidBlocks = Array.from(
+      document.querySelectorAll("#article pre")
+    ).filter(
+      (pre): pre is HTMLPreElement =>
+        pre instanceof HTMLPreElement &&
+        (pre.classList.contains("mermaid") ||
+          pre.getAttribute("data-language") === "mermaid" ||
+          !!pre.querySelector("code.language-mermaid"))
     );
 
-    for (const codeBlock of codeBlocks) {
-      const pre = codeBlock.parentElement;
-      if (!pre || !(pre instanceof HTMLPreElement)) continue;
-
+    for (const pre of mermaidBlocks) {
+      const codeBlock = pre.querySelector("code");
       pre.classList.add("mermaid");
-      pre.textContent = codeBlock.textContent ?? "";
+      pre.removeAttribute("data-language");
+      pre.textContent = codeBlock?.textContent ?? pre.textContent ?? "";
     }
   }
 

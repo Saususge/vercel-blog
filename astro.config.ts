@@ -3,7 +3,6 @@ import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
 import remarkToc from "remark-toc";
 import remarkCollapse from "remark-collapse";
-import mermaid from "astro-mermaid";
 import {
   transformerNotationDiff,
   transformerNotationHighlight,
