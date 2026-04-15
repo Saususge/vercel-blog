@@ -304,10 +304,20 @@ const nextPost =
     );
 
     for (const pre of mermaidBlocks) {
+      // Skip blocks that Mermaid already rendered to avoid converting SVG
+      // output back into raw text on subsequent page-load events.
+      if (pre.getAttribute("data-processed") || pre.querySelector("svg")) {
+        continue;
+      }
+
       const codeBlock = pre.querySelector("code");
+      if (!codeBlock) {
+        continue;
+      }
+
       pre.classList.add("mermaid");
       pre.removeAttribute("data-language");
-      pre.textContent = codeBlock?.textContent ?? pre.textContent ?? "";
+      pre.textContent = codeBlock.textContent ?? "";
     }
   }
 
