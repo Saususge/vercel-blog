@@ -232,7 +232,11 @@ const nextPost =
   function attachCopyButtons() {
     const copyButtonLabel = "Copy";
     const codeBlocks = Array.from(
-      document.querySelectorAll("pre:not(.mermaid)")
+      document.querySelectorAll("pre")
+    ).filter(
+      pre =>
+        !pre.classList.contains("mermaid") &&
+        !pre.querySelector("code.language-mermaid")
     );
 
     for (const codeBlock of codeBlocks) {
@@ -289,7 +293,23 @@ const nextPost =
 <script>
   import mermaid from "mermaid";
 
+  function normalizeMermaidBlocks() {
+    const codeBlocks = Array.from(
+      document.querySelectorAll("#article pre > code.language-mermaid")
+    );
+
+    for (const codeBlock of codeBlocks) {
+      const pre = codeBlock.parentElement;
+      if (!pre || !(pre instanceof HTMLPreElement)) continue;
+
+      pre.classList.add("mermaid");
+      pre.textContent = codeBlock.textContent ?? "";
+    }
+  }
+
   async function runMermaidInArticle() {
+    normalizeMermaidBlocks();
+
     const nodes = Array.from(
       document.querySelectorAll("#article pre.mermaid")
     ).filter(
@@ -313,4 +333,5 @@ const nextPost =
   }
 
   document.addEventListener("astro:page-load", runMermaidInArticle);
+  runMermaidInArticle();
 </script>
