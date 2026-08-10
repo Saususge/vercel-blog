@@ -3,7 +3,7 @@ title: "[마비노기] 플레이오네 엔진에 DXVK를 적용하면 진짜 게
 date: 2026-04-10T20:15:00+09:00
 pubDatetime: 2026-04-10T20:15:00+09:00
 draft: false
-featured: true
+featured: false
 tags:
   - 마비노기
   - 최적화
@@ -20,6 +20,8 @@ description: >-
   Single-thread bottleneck과 API translation overhead를 중심으로 결과 분석.
   Optimizing the frame budget by reducing CPU overhead in the command stream.
 ---
+
+> ⚠️ **작성자 알림 (2026-08-10)** — 본 글의 실험은 설계가 부실하여 결과 해석에 한계가 있음을 밝힙니다. 현재 마비노기는 DXVK가 게임사에서 공식 채택되어 적용되고 있습니다. 아래 내용은 이러한 배경을 감안하여 참고 바랍니다.
 
 import DxvkChart from "@/components/DxvkChart.astro";
 

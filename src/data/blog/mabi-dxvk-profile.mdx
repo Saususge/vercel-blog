@@ -2,11 +2,13 @@
 title: "마비노기 DXVK 1% Low 프레임 하락 원인 심층 프로파일링 (WPA 커널 분석)"
 pubDatetime: 2026-04-15
 draft: false
-featured: true
+featured: false
 tags: ["마비노기", "DXVK", "Vulkan", "프로파일링", "WPA", "최적화"]
 categories: ["Engineering", "Game Client"]
 description: "WPA와 ETW 시스템 커널 로그를 활용하여, 마비노기 DXVK 적용 시 발생하는 1% Low 프레임 붕괴의 실체인 '스레드 블로킹' 현상을 증명합니다."
 ---
+
+> ⚠️ **작성자 알림 (2026-08-10)** — 본 글의 실험은 설계가 부실하여 결과 해석에 한계가 있음을 밝힙니다. 현재 마비노기는 DXVK가 게임사에서 공식 채택되어 적용되고 있습니다. 아래 내용은 이러한 배경을 감안하여 참고 바랍니다.
 
 > **요약 (Abstract)**
 > 이전 벤치마크 테스트에서 마비노기에 DXVK를 적용할 경우 평균 프레임(Avg FPS)과 1% Low 프레임이 급격히 하락하며 마이크로 스터터링(Micro-stuttering)이 발생하는 현상을 관측했습니다. 본 포스팅에서는 Windows Performance Analyzer (WPA)를 활용하여, 이 현상의 근본 원인이 DXVK 워커 스레드의 점유율 폭주로 인한 메인 렌더링 스레드 블로킹(Thread Blocking)에 있음을 커널 수준에서 증명합니다.
