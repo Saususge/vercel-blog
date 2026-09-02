@@ -12,7 +12,7 @@ export type PortfolioProject = {
 export const HERO = {
   eyebrow: "Game Programmer · Graphics / Engine",
   title: "Portfolio",
-  desc: "클라이언트·그래픽스·엔진 쪽 작업 모음입니다. Vulkan/DXVK 스택과 프레임 타임 분석, C++ 엔진 실험을 주로 합니다.",
+  desc: "그래픽스와 로우레벨을 좋아하는 프로그래머입니다.",
   cta: { label: "GitHub", href: "https://github.com/Saususge" },
 };
 
@@ -36,8 +36,7 @@ export const PROJECTS: PortfolioProject[] = [
     highlights: [
       "이슈 #4426: 매 픽셀마다 반복되던 sqrt/div 연산이 비효율적이라는 지적에서 출발",
       "PR #4697: Gaussian 지수 계수를 CPU에서 미리 계산해 셰이더로 전달, 샘플마다 재계산 제거 — 정규화 계수는 가중치 정규화에서 상쇄되므로 생략",
-      "검증: GL 유닛 테스트 + 1024×1024 before/after 비교, 1,048,576픽셀 중 2픽셀만 1채널 차이",
-      "변경: tvgGlEffect.cpp, tvgGlShaderSrc.cpp 2파일 · +31 / -12",
+      "검증: GL 유닛 테스트 + 1024×1024 before/after 비교, 1,048,576픽셀 중 2픽셀만 1채널 차이. 속도·바이너리 크기 모두 유의미한 차이 없었으며, GLSL 컴파일러가 이미 최적화를 처리한 것으로 보임",
     ],
     links: [
       { label: "PR #4697", href: "https://github.com/thorvg/thorvg/pull/4697" },
