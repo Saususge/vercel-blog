@@ -47,15 +47,15 @@ export const PROJECTS: PortfolioProject[] = [
   },
   {
     title: "RayTricing-In-C",
-    badge: "개인 프로젝트",
+    badge: "팀 프로젝트",
     summary:
-      "C로 작성한 CPU 레이트레이서. 레이-구 교차, 재질·라이팅, 이미지 출력까지 최소 의존성으로 구현했습니다.",
-    role: "Solo · 렌더링",
-    tech: ["C", "Ray Tracing", "Math"],
+      "C로 작성한 CPU 레이트레이서. 팀 과제로 진행했으며, 그래픽스 파이프라인 설계와 함께 구·타원·콘 렌더링을 맡아 구현/개선했습니다.",
+    role: "그래픽스 파이프라인 설계 · 구/타원/콘 렌더링",
+    tech: ["C", "Ray Tracing", "Graphics Pipeline"],
     highlights: [
-      "벡터/레이/구 교차 등 기하 연산 직접 구현",
-      "재질·카메라 구조로 씬 구성 실험",
-      "로우레벨 메모리/성능 관점에서 구현",
+      "구·타원·콘 교차 및 셰이딩 구현과 개선",
+      "그래픽스 파이프라인 구조 설계 참여",
+      "팀 협업 기반 렌더링 파이프라인 구축",
     ],
     links: [
       {
@@ -65,19 +65,20 @@ export const PROJECTS: PortfolioProject[] = [
     ],
   },
   {
-    title: "TinyEngine42D",
-    badge: "개인 프로젝트",
+    title: "TaskFlow — 협업 워크스페이스 (가칭)",
+    badge: "팀 프로젝트",
     summary:
-      "C++ 기반 2D 미니 엔진. 게임 루프·렌더링·입력의 최소 코어를 직접 설계한 프로젝트입니다.",
-    role: "Solo · 엔진",
-    tech: ["C++", "2D Engine", "Game Loop"],
+      "Trello 스타일 협업 프로토타입. 칸반 보드·캘린더·초대·채팅·실시간 동기화를 Docker Compose 하나로 묶은 42 과제 기반 프로젝트입니다.",
+    role: "Full-stack · Workspace/Auth/Realtime",
+    tech: ["TypeScript", "Vue", "Express", "PostgreSQL", "Redis", "Docker"],
     highlights: [
-      "코어 루프와 모듈 분리로 확장 가능한 구조",
-      "2D 렌더링 파이프라인 직접 구성",
-      "지속 업데이트로 설계 반복",
+      "Workspace CRUD·권한(OWNER/ADMIN/MEMBER/VIEWER)과 초대 메일 플로우, 역할 변경/제거 가드 구현",
+      "메일 시스템: Nodemailer + Redis 큐·rate limiter, STARTTLS(587) 배선과 graceful shutdown 처리",
+      "Auth: IP 기반 signup rate limit, ToS에 IP 수집 고지, public workspace VIEWER/로그아웃 버그 수정",
+      "Realtime/UX: comment 편집·삭제 연결, a11y 키보드 보드/카드 이동, DB 트랜잭션·인덱스 보강",
     ],
     links: [
-      { label: "GitHub", href: "https://github.com/Saususge/TinyEngine42D" },
+      { label: "GitHub", href: "https://github.com/42worktool/TaskFlow" },
     ],
   },
 ];
