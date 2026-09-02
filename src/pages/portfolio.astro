@@ -7,7 +7,7 @@ import { SITE } from "@/config";
 
 const title = `Portfolio | ${SITE.title}`;
 const description =
-  "Saususge — Game Programmer 포트폴리오. ThorVG 오픈소스 기여, RayTracing, TinyEngine42D 등 GitHub 기반 프로젝트 큐레이션.";
+  "Saususge — Portfolio. ThorVG 기여, RayTracing, TinyEngine42D 등 작업 모음.";
 ---
 
 <Layout title={title} description={description}>
@@ -41,15 +41,11 @@ const description =
           연락하기
         </a>
       </div>
-      <p class="mt-3 text-xs text-foreground/60">
-        채용 담당자용: 아래 3개 카드는 대표 작업만 큐레이션했습니다. 전체 활동은
-        GitHub 프로필에서 확인하실 수 있습니다.
-      </p>
     </section>
 
     <section class="border-b border-border py-8">
       <h2 class="text-sm font-semibold tracking-wide text-foreground/70">
-        Skills — 채용 담당자가 5초 안에 보는 키워드
+        Skills
       </h2>
       <ul class="mt-4 flex flex-wrap gap-2">
         {
@@ -75,9 +71,7 @@ const description =
         >
       </div>
       <p class="mt-2 text-sm text-foreground/70">
-        ThorVG는 <span class="font-semibold text-foreground"
-          >내가 기여한 내용만</span
-        > 표기했습니다. (업스트림 전체가 아닌 포크 브랜치 기준)
+        ThorVG는 포크 브랜치 기준, 기여한 내용만 표기했습니다.
       </p>
 
       <div class="mt-6 grid gap-5">
@@ -103,8 +97,8 @@ const description =
                   {p.badge}
                 </span>
                 {p.featured && (
-                  <span class="text-xs font-medium text-accent">
-                    ★ 채용 담당자 추천 — 먼저 보세요
+                  <span class="text-xs font-medium text-foreground/60">
+                    기여 내용만 정리
                   </span>
                 )}
               </div>
@@ -141,11 +135,7 @@ const description =
     </section>
 
     <section class="rounded-2xl border border-border bg-muted/30 p-6">
-      <h2 class="text-sm font-bold tracking-wide">GitHub 활동 한눈에</h2>
-      <p class="mt-1 text-xs leading-5 text-foreground/60">
-        빌드 시 API 호출 없이도 보이도록 정적 이미지로 표시합니다. (Vercel
-        빌드에서 GitHub API 레이트리밋 이슈 방지)
-      </p>
+      <h2 class="text-sm font-bold tracking-wide">GitHub</h2>
       <div class="mt-4 overflow-hidden rounded-xl border border-border bg-background">
         <img
           src="https://ghchart.rshah.org/Saususge"
