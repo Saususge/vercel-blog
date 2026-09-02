@@ -27,7 +27,7 @@ export const PROJECTS: PortfolioProject[] = [
     title: "ThorVG — Vector Graphics Engine",
     badge: "Open Source 기여",
     summary:
-      "C++ 벡터 그래픽스 엔진 ThorVG. 이슈 #4426의 blur 셰이더 최적화 제안을 구현해 PR #4697로 기여했습니다. (리뷰 중, 미머지)",
+      "C++ 벡터 그래픽스 엔진 ThorVG. 이슈 #4426의 blur 셰이더 최적화 제안을 구현해 PR #4697로 기여했습니다. (closed)",
     role: "Contributor · GL 렌더러",
     tech: ["C++", "OpenGL", "GLSL", "ThorVG"],
     highlights: [
@@ -66,13 +66,14 @@ export const PROJECTS: PortfolioProject[] = [
     badge: "팀 프로젝트",
     summary:
       "Trello 스타일 협업 프로토타입. 칸반 보드·캘린더·초대·채팅·실시간 동기화를 Docker Compose 하나로 묶은 42 과제 기반 프로젝트입니다.",
-    role: "Full-stack · Workspace/Auth/Realtime",
+    role: "Full-stack · Workspace/Auth/Realtime · PM 겸업",
     tech: ["TypeScript", "Vue", "Express", "PostgreSQL", "Redis", "Docker"],
     highlights: [
       "Workspace CRUD·권한(OWNER/ADMIN/MEMBER/VIEWER)과 초대 메일 플로우, 역할 변경/제거 가드 구현",
       "메일 시스템: Nodemailer + Redis 큐·rate limiter, STARTTLS(587) 배선과 graceful shutdown 처리",
       "Auth: IP 기반 signup rate limit, ToS에 IP 수집 고지, public workspace VIEWER/로그아웃 버그 수정",
       "Realtime/UX: comment 편집·삭제 연결, a11y 키보드 보드/카드 이동, DB 트랜잭션·인덱스 보강",
+      "PM 겸업: 팀 일정 관리와 Scrum 운영, 협업 툴 세팅으로 개발 흐름 조율",
     ],
     links: [
       { label: "GitHub", href: "https://github.com/42worktool/TaskFlow" },
