@@ -129,7 +129,39 @@ const description =
       </div>
     </section>
 
-    <section class="rounded-2xl border border-border bg-muted/30 p-6">
+    <section class="border-t border-border pt-8">
+      <h2 class="text-xl font-bold tracking-tight">Profiling — 개인 프로파일링</h2>
+      <p class="mt-2 text-sm leading-6 text-foreground/70">
+        마비노기(플레이오네 엔진) 대상으로 PresentMon과 WPA로 프레임 타임과 스레드 블로킹을 측정한 기록입니다.
+      </p>
+      <div class="mt-5 grid gap-4 sm:grid-cols-2">
+        <article class="rounded-2xl border border-border p-5">
+          <p class="text-xs font-semibold tracking-wide text-foreground/60">POST · 2026-04-10</p>
+          <h3 class="mt-2 text-sm font-bold leading-snug">
+            플레이오네 엔진에 DXVK를 적용하면 진짜 게임플레이가 쾌적해질까?
+          </h3>
+          <p class="mt-2 text-sm leading-6 text-foreground/75">
+            던바튼 광장 30초 구간 PresentMon 측정. Native DX9 대비 DXVK에서 Avg –29%, 5% Low –21%, 1% Low –42%. 싱글스레드 병목 + 번역/컴파일 오버헤드로 Low percentile이 더 무너진 사례.
+          </p>
+          <a href="/posts/mabi-dxvk-benchmark/" class="mt-3 inline-block text-xs font-medium text-accent hover:underline">글 보기 ↗</a>
+        </article>
+        <article class="rounded-2xl border border-border p-5">
+          <p class="text-xs font-semibold tracking-wide text-foreground/60">POST · 2026-04-15</p>
+          <h3 class="mt-2 text-sm font-bold leading-snug">
+            DXVK 1% Low 하락 — WPA 커널 분석
+          </h3>
+          <p class="mt-2 text-sm leading-6 text-foreground/75">
+            WPA/ETW로 Generic Events와 스레드 타임라인 추적. 스터터 구간에서 메인 스레드가 Wait로 추락하는 순간 DXVK 워커(d3d9.dll)가 치솟는 블로킹 구조를 커널 로그로 확인.
+          </p>
+          <a href="/posts/mabi-dxvk-profile/" class="mt-3 inline-block text-xs font-medium text-accent hover:underline">글 보기 ↗</a>
+        </article>
+      </div>
+      <p class="mt-3 text-xs leading-5 text-foreground/50">
+        ※ 두 글 모두 실험 설계 한계를 2026-08-10 공지로 명시했습니다. 현재 마비노기는 DXVK가 공식 채택되어 있습니다.
+      </p>
+    </section>
+
+    <section class="mt-8 rounded-2xl border border-border bg-muted/30 p-6">
       <h2 class="text-sm font-bold tracking-wide">GitHub</h2>
       <div class="mt-4 overflow-hidden rounded-xl border border-border bg-background">
         <img

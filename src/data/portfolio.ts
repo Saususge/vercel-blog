@@ -18,11 +18,8 @@ export const HERO = {
 
 export const SKILLS = [
   { label: "C / C++", note: "엔진·그래픽스" },
-  { label: "Vulkan · WebGPU · OpenGL", note: "렌더링" },
-  { label: "ThorVG · SVG/Lottie", note: "벡터 그래픽스" },
-  { label: "Ray Tracing", note: "CPU 레이트레이서" },
-  { label: "PresentMon · Profiling", note: "프레임 타임 분석" },
-  { label: "DXVK · Driver Stack", note: "번역 레이어" },
+  { label: "Vulkan / DX", note: "그래픽스" },
+  { label: "Profiling", note: "PresentMon · WPA" },
 ];
 
 export const PROJECTS: PortfolioProject[] = [
