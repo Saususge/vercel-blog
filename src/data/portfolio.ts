@@ -10,7 +10,7 @@ export type PortfolioProject = {
 };
 
 export const HERO = {
-  eyebrow: "Game Programmer · Graphics / Engine",
+  eyebrow: "Game Client Programmer · Graphics / Performance",
   title: "Portfolio",
   desc: "그래픽스와 로우레벨을 좋아하는 프로그래머입니다.",
   cta: { label: "GitHub", href: "https://github.com/Saususge" },
